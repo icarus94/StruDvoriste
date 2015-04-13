@@ -16,7 +16,9 @@ public class Test {
 			
 			
 			cvor1 = new CvorDSListe(0, cvor5, cvor2);
+			System.out.println(""+cvor1.toString());
 			cvor2 = new CvorDSListe(6, cvor1, cvor3);
+			System.out.println(""+cvor2.toString());
 			cvor3 = new CvorDSListe(5, cvor2, cvor4);
 			cvor4 = new CvorDSListe(6, cvor3, cvor5);
 			cvor5 = new CvorDSListe(0, cvor4, cvor1);

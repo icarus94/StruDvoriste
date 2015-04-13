@@ -9,15 +9,17 @@ package linearnestrukture.dinamicke.dslista;
  * 
  */
 public class CvorDSListe {
+
+
 	// podatak koji se cuva u cvoru.
 	// Ako cvor treba da cuva neki drugi tip elementa, ovde to treba promeniti
-	public static int podatak;
+	public  int podatak;
 
 	// "pokazivac" na prethodni cvor u listi
-	public static CvorDSListe prethodni;
+	public  CvorDSListe prethodni;
 
 	// "pokazivac" na sledeci cvor u listi
-	 public static CvorDSListe sledeci;
+	 public  CvorDSListe sledeci;
 
 	/**
 	 * Konstruktor. Prihvata i postavlja sve elemente cvora.
@@ -32,4 +34,34 @@ public class CvorDSListe {
 		prethodni = pret;
 		sledeci = sled;
 	}
+
+	public int getPodatak() {
+		return podatak;
+	}
+
+	public void setPodatak(int podatak) {
+		this.podatak = podatak;
+	}
+
+	public CvorDSListe getPrethodni() {
+		return prethodni;
+	}
+
+	public void setPrethodni(CvorDSListe prethodni) {
+		this.prethodni = prethodni;
+	}
+
+	public CvorDSListe getSledeci() {
+		return sledeci;
+	}
+
+	public String toString() {
+		
+		return "podatak "+this.podatak+" sledeci "+this.sledeci+" predhodni "+this.prethodni;
+	}
+
+	public void setSledeci(CvorDSListe sledeci) {
+		this.sledeci = sledeci;
+	}
+	
 }
