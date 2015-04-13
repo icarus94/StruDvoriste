@@ -138,10 +138,36 @@ public class Vezba {
 
 3.	Data je dvostruko spregnuta (DS) lista čiji su elementi čvorova pokazivači na početak jednostruko spregnute (JS) liste. Napisati klasu koja opisuje čvor ovakve DS liste, a zatim napisati algoritam za ubacivanje novog elementa u ovako definisanu strukturu, koji funkcioniše po sledećem principu: kreće se od početka DS liste. Ako je element koji se ubacuje manji od prvog elementa JS liste trenutnog čvora DS liste, onda se taj element ubacuje na kraj te JS liste. U suprotnom, prelazi se na sledeći čvor DS liste i algoritam se ponavlja. Ako se stigne do kraja DS liste, onda se kreira novi čvor i u njegovu JS listu se ubacuje novi element. Početna metoda prihvata pokazivač na početak DS liste i ceo broj koji se ubacuje.
 (16 poena)
+	 * @throws Exception 
 
 
 	 *
 	 *
 	 */
+	/**
+	 * Sa casa INVERTUJ METODA
+	 * @param prvi
+	 * @throws Exception
+	 */
+	public void invertujDSListu(CvorDSListe prvi) throws Exception{
+		if(prvi==null)
+			throw new Exception("Prazan");
+		if(prvi.sledeci==null)
+			return;
+		int brojac=0;
+		CvorDSListe tmp=prvi;
+		while(tmp.sledeci==null){
+			brojac++;           //nece biti sracunat poslenji cvor
+			tmp=tmp.sledeci;
+		}
+		for(int i=0;i<=brojac;i++){
+			CvorDSListe a = tmp.sledeci;
+			CvorDSListe b = tmp.prethodni;
+			tmp.sledeci=b;
+			tmp.prethodni=a;
+			tmp=tmp.sledeci;
+		}
+	}
+	
 	
 }

@@ -57,7 +57,7 @@ public class CvorDSListe {
 
 	public String toString() {
 		
-		return "podatak "+this.podatak+" sledeci "+this.sledeci+" predhodni "+this.prethodni;
+		return "podatak "+this.podatak ;//+" sledeci "+this.sledeci.podatak+" predhodni "+this.prethodni.podatak;
 	}
 
 	public void setSledeci(CvorDSListe sledeci) {
