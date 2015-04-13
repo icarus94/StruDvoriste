@@ -3,6 +3,7 @@ package vezbanje;
 import linearnestrukture.*;
 import linearnestrukture.dinamicke.dslista.CvorDSListe;
 import linearnestrukture.dinamicke.jslista.CvorJSListe;
+import linearnestrukture.staticke.StatickiStek;
 
 
 public class Vezba {
@@ -104,14 +105,36 @@ public class Vezba {
 	 *   (sa datim početnim pokazivačima) formirajte treću sortiranu u opadajućem redosledu. Date dve liste 
 	 *   treba da ostanu kakve su bile (tj. ne menjaju se). 
 	 */
-	public CvorJSListe forimarjTrecu(CvorJSListe prviI,CvorJSListe prviII){
-		if(prviI==null && prviII==null)
+	public CvorJSListe forimarjTrecu(CvorJSListe prvi1,CvorJSListe prvi2){
+		if(prvi1==null && prvi2==null)
 			return null;
-		CvorJSListe prviIII = null;
-		CvorJSListe tmp1 = prviI;
-		CvorJSListe tmp2 = prviII;
+		CvorJSListe prvi3 = null;
+		CvorJSListe tmp = prvi1;
+		CvorJSListe tmp1 = prvi1;
+		CvorJSListe tmp2 = prvi2;
+		int brojac1=0;
+		int brojac2=0;
+		while(tmp!=null){
+			brojac1++;
+			tmp=tmp.sledeci;
+		}
+		tmp=prvi2;
+		while(tmp!=null){
+			brojac2++;
+			tmp=tmp.sledeci;
+		}
+		for(int i=0;i<brojac1+brojac2;i++){
+			if(tmp1.podatak<tmp2.podatak && tmp1!=null){
+				prvi3 = new CvorJSListe(tmp1.podatak, prvi3);
+				tmp1=tmp1.sledeci;
+			}
+			if(tmp2.podatak<=tmp1.podatak && tmp2!=null){
+				prvi3 = new CvorJSListe(tmp2.podatak, prvi3);
+				tmp2=tmp2.sledeci;
+			}
+		}
 		
-		return prviIII;
+		return prvi3;
 	}
 	/**
 	 * 1.	Recite da li postoji slučaj kada je binarno pretraživanje brže od interpolacionog pretraživanja. Objasnite ga. (10 poena)
@@ -121,13 +144,9 @@ public class Vezba {
 	 *  Po završetku algoritma početni red treba da ostane nepromenjen. Nije dozvoljeno korišćenje nikakvih pomoćnih struktura! Moguće je 
 	 *  korišćenje samo sledećih operacija nad redom: Ubaci(int), int Izbaci() i boolean Prazan().
 	 * 
-	 * 3.	Dat je stack celih brojeva. Napisati funkciju koja će ispisati sadržaj staka u obrnutom redosledu. Nije dozvoljeno korišćenje nikakvih
-	 *  pomoćnih struktura! Moguće je korišćenje samo operacija nad stakom: Ubaci(int), int Izbaci() i boolean Prazan(). Po završetku operacije početni 
-	 *  stak treba da ostane nepromenjen.
+	 * 
 	 * 2.	Napisati iterativni algoritam za binarno pretraživanje niza celih brojeva sortiranog u rastućem redosledu.
 	 * 
-	 * 1.	Dat je pokazivač na neki čvor jednostruko spregnute ciklične liste. Napisati funkciju int Count(CvorDListe cvor) koja prebrojava koliko ima elemenata 
-	 * liste koji su veći od elementa u datom čvoru (cvor.podatak). Ne koristiti pokazivače Head i Tail već samo dati pokazivač cvor.
 	 * 
 	 * 
 	 * 1.	Dat je pokazivač na neki čvor dvostruko spregnute liste. Napisati funkciju za ubacivanje novog elementa pre datog pokazivača. Zanemariti pokazivače Head i Tail.
@@ -169,5 +188,33 @@ public class Vezba {
 		}
 	}
 	
+	/**1.	Dat je pokazivač na neki čvor jednostruko spregnute ciklične liste. Napisati funkciju int Count(CvorDListe cvor) koja prebrojava koliko ima elemenata 
+	 * liste koji su veći od elementa u datom čvoru (cvor.podatak). Ne koristiti pokazivače Head i Tail već samo dati pokazivač cvor.
+	 */
+	public int Count(CvorJSListe cvor)throws Exception{
+		if(cvor==null)
+			throw new Exception();
+		CvorJSListe tmp =  cvor;
+		int brojac=0;
+		do{
+			if(cvor.podatak<tmp.podatak)
+				brojac++;
+			tmp=tmp.sledeci;
+		}while(cvor!=tmp);
+		return brojac;
+	}
 	
+	/**
+	 * 3.	Dat je stack celih brojeva. Napisati funkciju koja će ispisati sadržaj staka u obrnutom redosledu. Nije dozvoljeno korišćenje nikakvih
+	 *  pomoćnih struktura! Moguće je korišćenje samo operacija nad stakom: Ubaci(int), int Izbaci() i boolean Prazan(). Po završetku operacije početni 
+	 *  stak treba da ostane nepromenjen.
+	 */
+	public void ispisi(StatickiStek a)throws Exception{
+		if(a==null)
+			throw new Exception("Prazan");
+		int tmp = a.pop();
+		ispisi(a);
+		System.out.println(""+a);
+		a.push(tmp);
+	}
 }
