@@ -25,13 +25,15 @@ public class Vezba {
 		for(int i=0;i<brojac;i++){
 				if(tmp1.podatak==tmp2.podatak){	
 					do {
-						tmp2=tmp2.sledeci;
+						tmp2=tmp2.prethodni;
+						tmp1=tmp1.sledeci;
 						brojac2++;
-					} while (brojac2==brojac && (tmp1.podatak==tmp2.podatak));
+					} while ((tmp1.podatak==tmp2.podatak) && (brojac!=brojac2));
 				}
+				if(brojac2==brojac)
+					return true;
 				tmp1=tmp1.sledeci;
-			if(brojac2==brojac)
-				return true;
+				brojac2=0;
 		}
 		return false;
 	}
