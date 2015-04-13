@@ -23,8 +23,18 @@ public class Test {
 			cvor4 = new CvorDSListe(6, cvor3, cvor5);
 			cvor5 = new CvorDSListe(0, cvor4, cvor1);
 		//	CvorDSListe cvor1 = new CvorDSListe(p, pret, sled);
-			CvorDSListe neki = cvor4;
 			
+			cvor1.sledeci=cvor2;
+			cvor1.prethodni=cvor5;
+			cvor4.sledeci=cvor5;
+			cvor4.prethodni=cvor3;
+			cvor5.sledeci=cvor1;
+			cvor5.prethodni=cvor4;
+			cvor3.sledeci=cvor4;
+			cvor3.prethodni=cvor2;
+			cvor2.prethodni=cvor1;
+			cvor2.sledeci=cvor3;
+			CvorDSListe neki = cvor4;
 			try {
 				if(vb.proveriDaLiJePalindorm(neki)){
 					System.out.println("Da");
