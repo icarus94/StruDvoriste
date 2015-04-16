@@ -175,7 +175,7 @@ public class Vezba {
 			return;
 		int brojac=0;
 		CvorDSListe tmp=prvi;
-		while(tmp.sledeci==null){
+		while(tmp.sledeci!=null){
 			brojac++;           //nece biti sracunat poslenji cvor
 			tmp=tmp.sledeci;
 		}
@@ -186,6 +186,23 @@ public class Vezba {
 			tmp.prethodni=a;
 			tmp=tmp.sledeci;
 		}
+	}
+	
+	public void invertuj2(CvorDSListe prvi)throws Exception{
+		if(prvi==null)
+			throw new Exception("Prazan");
+		if(prvi.sledeci==null)
+			return;
+		while(prvi.sledeci!=null)
+			prvi=prvi.sledeci;
+		do{
+			prvi=prvi.prethodni;
+			prvi.sledeci.prethodni=prvi.sledeci.sledeci;
+			prvi.sledeci.sledeci=prvi;
+			
+		}while(prvi.prethodni!=null);
+		prvi.prethodni=prvi.sledeci;
+		prvi.sledeci=null;
 	}
 	
 	/**1.	Dat je pokazivač na neki čvor jednostruko spregnute ciklične liste. Napisati funkciju int Count(CvorDListe cvor) koja prebrojava koliko ima elemenata 
@@ -216,5 +233,46 @@ public class Vezba {
 		ispisi(a);
 		System.out.println(""+a);
 		a.push(tmp);
+	}
+	
+	public int zbirDuplih(CvorDSListe prvi)throws Exception{
+		if(prvi==null)
+			throw new Exception("Empty");
+		if(prvi.sledeci==null)
+			return 0;
+		CvorDSListe zaBr =prvi;
+		CvorDSListe tmp1 =prvi;
+		CvorDSListe tmp2 =prvi;
+		CvorDSListe tmp3 =prvi;
+		int zbir=0;
+		int brojac=0;
+		while(zaBr!=null){
+			brojac++;
+			zaBr=zaBr.sledeci;
+		}
+		for(int i=0;i<brojac;i++){
+			tmp2=tmp1.sledeci;
+			tmp3=tmp1.prethodni;
+			int brojac2=0;
+			boolean dal=true;
+			for(int z=i;z>0;z--){
+				if(tmp1.podatak==tmp3.podatak)
+					dal=false;
+				tmp3=tmp3.prethodni;
+			}
+			if(dal==true){
+				for(int j=i;j<brojac-1;j++){
+					if(tmp2.podatak==tmp1.podatak){
+						brojac2++;
+					}
+					tmp2=tmp2.sledeci;
+				}
+			}
+			if(brojac2==1)
+				zbir=zbir+tmp1.podatak;
+			tmp1=tmp1.sledeci;
+		}
+		return zbir;
+		
 	}
 }

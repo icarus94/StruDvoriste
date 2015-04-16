@@ -15,12 +15,12 @@ public class Test {
 			CvorDSListe cvor6=null;
 			
 			
-			cvor1 = new CvorDSListe(0, null, cvor2);
+			cvor1 = new CvorDSListe(1, null, cvor2);
 		
-			cvor2 = new CvorDSListe(6, cvor1, cvor3);
-			cvor3 = new CvorDSListe(5, cvor2, cvor4);
-			cvor4 = new CvorDSListe(6, cvor3, cvor5);
-			cvor5 = new CvorDSListe(0, cvor4, null);
+			cvor2 = new CvorDSListe(2, cvor1, cvor3);
+			cvor3 = new CvorDSListe(3, cvor2, cvor4);
+			cvor4 = new CvorDSListe(4, cvor3, cvor5);
+			cvor5 = new CvorDSListe(5, cvor4, null);
 		//	CvorDSListe cvor1 = new CvorDSListe(p, pret, sled);
 			
 			cvor1.sledeci=cvor2;
@@ -45,7 +45,11 @@ public class Test {
 			
 			vb.invertujDSListu(cvor1);
 			System.out.println(""+cvor1.toString());
-			System.out.println(""+cvor2.toString());
+			System.out.println(""+cvor1.prethodni.toString());
+			System.out.println(""+cvor1.prethodni.prethodni.toString());
+			System.out.println(""+cvor1.prethodni.prethodni.prethodni.toString());
+			System.out.println(""+cvor1.prethodni.prethodni.prethodni.prethodni. toString());
+		//	System.out.println(""+vb.zbirDuplih(cvor1));
 	}
 
 }
